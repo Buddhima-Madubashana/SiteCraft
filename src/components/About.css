@@ -3,6 +3,7 @@
 }
 
 .about-grid {
+  display: grid;
   align-items: center;
   gap: 4rem;
 }

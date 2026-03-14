@@ -13,6 +13,7 @@
 }
 
 .contact-grid {
+  display: grid;
   gap: 4rem;
   align-items: center;
 }
