@@ -1,4 +1,5 @@
-import React from 'react';
+import { useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import './Portfolio.css';
 
 const Portfolio = () => {
@@ -34,6 +35,16 @@ const Portfolio = () => {
     }
   ];
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+  };
+
   return (
     <section id="portfolio" className="section-alt portfolio-section">
       <div className="container">
@@ -45,29 +56,56 @@ const Portfolio = () => {
           </p>
         </div>
         
-        <div className="portfolio-grid grid-2">
-          {projects.map((proj) => (
-            <div key={proj.id} className="portfolio-card">
-              <div className="portfolio-image-wrapper">
-                {proj.isBeforeAfter ? (
-                  <div className="before-after-container">
-                    <img src={proj.imageBefore} alt={`${proj.title} Before`} className="img-before" />
-                    <img src={proj.image} alt={`${proj.title} After`} className="img-after" />
-                    <span className="badge-before">Before</span>
-                    <span className="badge-after">After</span>
-                  </div>
-                ) : (
-                  <img src={proj.image} alt={proj.title} />
-                )}
-                <div className="portfolio-overlay">
-                  <div className="portfolio-content">
-                    <span className="portfolio-category">{proj.category}</span>
-                    <h3 className="portfolio-title">{proj.title}</h3>
+        <div className="portfolio-slider-wrapper">
+          <button className="slider-btn prev-btn" onClick={prevSlide} aria-label="Previous Project">
+            <ChevronLeft size={28} />
+          </button>
+          <button className="slider-btn next-btn" onClick={nextSlide} aria-label="Next Project">
+            <ChevronRight size={28} />
+          </button>
+
+          <div className="portfolio-slider-container">
+            <div 
+              className="portfolio-slider-track"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {projects.map((proj) => (
+                <div key={proj.id} className="portfolio-slide">
+                  <div className="portfolio-card">
+                    <div className="portfolio-image-wrapper">
+                      {proj.isBeforeAfter ? (
+                        <div className="before-after-container">
+                          <img src={proj.imageBefore} alt={`${proj.title} Before`} className="img-before" />
+                          <img src={proj.image} alt={`${proj.title} After`} className="img-after" />
+                          <span className="badge-before">Before</span>
+                          <span className="badge-after">After</span>
+                        </div>
+                      ) : (
+                        <img src={proj.image} alt={proj.title} />
+                      )}
+                      <div className="portfolio-overlay">
+                        <div className="portfolio-content">
+                          <span className="portfolio-category">{proj.category}</span>
+                          <h3 className="portfolio-title">{proj.title}</h3>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
+          
+          <div className="slider-indicators">
+            {projects.map((_, idx) => (
+              <button 
+                key={idx}
+                className={`indicator-dot ${currentIndex === idx ? 'active' : ''}`}
+                onClick={() => setCurrentIndex(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+              ></button>
+            ))}
+          </div>
         </div>
         
         <div className="text-center" style={{ marginTop: '3rem' }}>
