@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import './Portfolio.css';
 
@@ -43,6 +43,19 @@ const Portfolio = () => {
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
   };
+
+  // Auto-slide specifically for mobile viewports
+  useEffect(() => {
+    const handleAutoSlide = () => {
+      if (window.innerWidth <= 768) {
+        setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+      }
+    };
+
+    const intervalId = setInterval(handleAutoSlide, 3000);
+
+    return () => clearInterval(intervalId);
+  }, [projects.length]);
 
   return (
     <section id="portfolio" className="section-alt portfolio-section">
