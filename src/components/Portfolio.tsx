@@ -1,0 +1,81 @@
+import React from 'react';
+import './Portfolio.css';
+
+const Portfolio = () => {
+  const projects = [
+    {
+      id: 1,
+      image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      title: "Alpine Luxury Build",
+      category: "New Home Build",
+      isBeforeAfter: false
+    },
+    {
+      id: 2,
+      image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      title: "Colombo City Plaza",
+      category: "Commercial Fit-Out",
+      isBeforeAfter: false
+    },
+    {
+      id: 3,
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      title: "Heritage Restoration",
+      category: "Renovation",
+      isBeforeAfter: true,
+      imageBefore: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+      id: 4,
+      image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      title: "Silicon Tech Hub",
+      category: "Commercial Office",
+      isBeforeAfter: false
+    }
+  ];
+
+  return (
+    <section id="portfolio" className="section-alt portfolio-section">
+      <div className="container">
+        <div className="text-center section-header">
+          <span className="section-subtitle">Our Work</span>
+          <h2>Featured Projects</h2>
+          <p className="section-desc">
+            Explore our visual gallery of masterfully completed projects, showcasing precision and architectural integrity.
+          </p>
+        </div>
+        
+        <div className="portfolio-grid grid-2">
+          {projects.map((proj) => (
+            <div key={proj.id} className="portfolio-card">
+              <div className="portfolio-image-wrapper">
+                {proj.isBeforeAfter ? (
+                  <div className="before-after-container">
+                    <img src={proj.imageBefore} alt={`${proj.title} Before`} className="img-before" />
+                    <img src={proj.image} alt={`${proj.title} After`} className="img-after" />
+                    <span className="badge-before">Before</span>
+                    <span className="badge-after">After</span>
+                  </div>
+                ) : (
+                  <img src={proj.image} alt={proj.title} />
+                )}
+                <div className="portfolio-overlay">
+                  <div className="portfolio-content">
+                    <span className="portfolio-category">{proj.category}</span>
+                    <h3 className="portfolio-title">{proj.title}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        <div className="text-center" style={{ marginTop: '3rem' }}>
+          <a href="#contact" className="btn btn-primary">Start Your Project</a>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Portfolio;

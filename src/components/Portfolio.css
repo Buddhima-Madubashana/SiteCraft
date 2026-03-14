@@ -1,0 +1,132 @@
+.portfolio-section {
+  background-color: var(--surface-dark);
+}
+
+.portfolio-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+.portfolio-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+.portfolio-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.portfolio-card:hover .portfolio-image-wrapper img {
+  transform: scale(1.05);
+}
+
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15,23,42, 0.9) 0%, rgba(15,23,42, 0.2) 50%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+  opacity: 0.9;
+  transition: var(--transition);
+}
+
+.portfolio-card:hover .portfolio-overlay {
+  opacity: 1;
+  background: linear-gradient(to top, rgba(245, 158, 11, 0.9) 0%, rgba(15,23,42, 0.4) 60%, transparent 100%);
+}
+
+.portfolio-category {
+  color: var(--text-light); /* changed on hover via overlay */
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  background: rgba(0,0,0,0.5);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.portfolio-title {
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 0;
+  transform: translateY(10px);
+  transition: transform 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-title {
+  transform: translateY(0);
+}
+
+/* Before and After Styles */
+.before-after-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.before-after-container img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease, transform 0.6s ease;
+}
+
+.before-after-container .img-before {
+  opacity: 1;
+  z-index: 2;
+}
+
+.before-after-container .img-after {
+  opacity: 0;
+  z-index: 1;
+}
+
+.portfolio-card:hover .before-after-container .img-before {
+  opacity: 0;
+}
+
+.portfolio-card:hover .before-after-container .img-after {
+  opacity: 1;
+}
+
+.badge-before, .badge-after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--surface-dark);
+  color: #fff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 5;
+  transition: opacity 0.3s ease;
+}
+
+.badge-after {
+  opacity: 0;
+  background: var(--primary);
+  color: var(--bg-dark);
+}
+
+.portfolio-card:hover .badge-before {
+  opacity: 0;
+}
+
+.portfolio-card:hover .badge-after {
+  opacity: 1;
+}
