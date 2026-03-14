@@ -46,6 +46,12 @@
   flex-shrink: 0;
 }
 
+@media (max-width: 768px) {
+  .marquee-card {
+    width: 300px;
+  }
+}
+
 .testimonial-card {
   background: var(--surface-dark);
   padding: 1.8rem; /* Made padding smaller instead of 2.5rem */

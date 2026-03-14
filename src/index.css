@@ -161,6 +161,25 @@ button {
   .grid-4 { grid-template-columns: repeat(4, 1fr); }
 }
 
+/* Global Mobile Responsiveness */
+@media (max-width: 768px) {
+  :root {
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2.5rem;
+    --spacing-xl: 4rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  .section, .section-alt {
+    padding: var(--spacing-xl) 0;
+  }
+}
+
 /* Specific Section Styles (if needed can be modular) */
 .glass-panel {
   background: rgba(30, 41, 59, 0.7);

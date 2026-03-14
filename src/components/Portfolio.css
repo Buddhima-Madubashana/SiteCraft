@@ -109,6 +109,16 @@
   .next-btn { right: 10px; }
 }
 
+@media (max-width: 768px) {
+  .slider-btn {
+    width: 44px;
+    height: 44px;
+  }
+  .portfolio-title {
+    font-size: 1.25rem;
+  }
+}
+
 .portfolio-image-wrapper img {
   width: 100%;
   height: 100%;
