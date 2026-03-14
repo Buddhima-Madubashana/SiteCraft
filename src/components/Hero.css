@@ -1,6 +1,7 @@
 .hero-section {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   /* Use a high-quality relevant Unsplash image */
