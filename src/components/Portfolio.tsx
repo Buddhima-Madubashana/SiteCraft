@@ -23,8 +23,7 @@ const Portfolio = () => {
       image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       title: "Heritage Restoration",
       category: "Renovation",
-      isBeforeAfter: true,
-      imageBefore: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      isBeforeAfter: false
     },
     {
       id: 4,
@@ -73,14 +72,7 @@ const Portfolio = () => {
                 <div key={proj.id} className="portfolio-slide">
                   <div className="portfolio-card">
                     <div className="portfolio-image-wrapper">
-                      {proj.isBeforeAfter ? (
-                        <div className="before-after-container">
-                          <img src={proj.imageBefore} alt={`${proj.title} Before`} className="img-before" />
-                          <img src={proj.image} alt={`${proj.title} After`} className="img-after" />
-                        </div>
-                      ) : (
-                        <img src={proj.image} alt={proj.title} />
-                      )}
+                      <img src={proj.image} alt={proj.title} />
                       <div className="portfolio-overlay">
                         <div className="portfolio-content">
                           <span className="portfolio-category">{proj.category}</span>
