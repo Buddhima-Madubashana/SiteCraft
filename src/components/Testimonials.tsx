@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star } from 'lucide-react';
 import './Testimonials.css';
 
 const Testimonials = () => {
@@ -54,21 +53,13 @@ const Testimonials = () => {
     }
   ];
 
-  // Group reviews into slides containing 4 cards each (2 lines of 2 cards)
-  const slides = [];
-  for (let i = 0; i < reviews.length; i += 4) {
-    slides.push(reviews.slice(i, i + 4));
-  }
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  };
+  // Split reviews into two halves for the two rows
+  const topRowReviews = reviews.slice(0, 4);
+  const bottomRowReviews = reviews.slice(4, 8);
+  
+  // Duplicate arrays to create the infinite scroll illusion seamlessly
+  const topMarquee = [...topRowReviews, ...topRowReviews, ...topRowReviews, ...topRowReviews];
+  const bottomMarquee = [...bottomRowReviews, ...bottomRowReviews, ...bottomRowReviews, ...bottomRowReviews];
 
   return (
     <section id="testimonials" className="section testimonials-section">
@@ -80,56 +71,48 @@ const Testimonials = () => {
             Don't just take our word for it. Hear from those who have trusted us with their largest investments.
           </p>
         </div>
-        
-        <div className="testimonial-slider-wrapper">
-          <button className="testimonial-btn prev-btn" onClick={prevSlide} aria-label="Previous Testimonials">
-            <ChevronLeft size={28} />
-          </button>
-          
-          <div className="testimonial-slider-container">
-            <div 
-              className="testimonial-slider-track"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
-              {slides.map((slideGroup, slideIndex) => (
-                <div key={slideIndex} className="testimonial-slide">
-                  <div className="testimonial-slide-grid">
-                    {slideGroup.map((rev) => (
-                      <div key={rev.id} className="testimonial-card">
-                        <div className="stars">
-                          {[...Array(5)].map((_, i) => (
-                            <Star key={i} size={20} fill="currentColor" />
-                          ))}
-                        </div>
-                        <p className="testimonial-text">"{rev.text}"</p>
-                        <div className="testimonial-author">
-                          <div className="author-avatar">{rev.name.charAt(0)}</div>
-                          <div>
-                            <h4 className="author-name">{rev.name}</h4>
-                            <span className="author-project">{rev.project}</span>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+      </div>
+      
+      <div className="marquee-container">
+        {/* Top line moves Right */}
+        <div className="marquee-track right">
+          {topMarquee.map((rev, idx) => (
+            <div key={`top-${rev.id}-${idx}`} className="testimonial-card marquee-card">
+              <div className="stars">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={16} fill="currentColor" />
+                ))}
+              </div>
+              <p className="testimonial-text">"{rev.text}"</p>
+              <div className="testimonial-author">
+                <div className="author-avatar">{rev.name.charAt(0)}</div>
+                <div>
+                  <h4 className="author-name">{rev.name}</h4>
+                  <span className="author-project">{rev.project}</span>
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
-
-          <button className="testimonial-btn next-btn" onClick={nextSlide} aria-label="Next Testimonials">
-            <ChevronRight size={28} />
-          </button>
+          ))}
         </div>
         
-        <div className="testimonial-indicators">
-          {slides.map((_, idx) => (
-            <button 
-              key={idx}
-              className={`t-indicator-dot ${currentIndex === idx ? 'active' : ''}`}
-              onClick={() => setCurrentIndex(idx)}
-              aria-label={`Go to testimonial slide ${idx + 1}`}
-            ></button>
+        {/* Bottom line moves Left */}
+        <div className="marquee-track left">
+          {bottomMarquee.map((rev, idx) => (
+            <div key={`bottom-${rev.id}-${idx}`} className="testimonial-card marquee-card">
+              <div className="stars">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={16} fill="currentColor" />
+                ))}
+              </div>
+              <p className="testimonial-text">"{rev.text}"</p>
+              <div className="testimonial-author">
+                <div className="author-avatar">{rev.name.charAt(0)}</div>
+                <div>
+                  <h4 className="author-name">{rev.name}</h4>
+                  <span className="author-project">{rev.project}</span>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
