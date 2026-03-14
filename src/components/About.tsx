@@ -9,7 +9,7 @@ const About = () => {
         <div className="about-grid grid-2">
           <div className="about-image-wrapper">
             <img 
-              src="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
               alt="SiteCraft Construction Team" 
               className="about-image"
             />
