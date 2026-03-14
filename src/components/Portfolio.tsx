@@ -77,8 +77,6 @@ const Portfolio = () => {
                         <div className="before-after-container">
                           <img src={proj.imageBefore} alt={`${proj.title} Before`} className="img-before" />
                           <img src={proj.image} alt={`${proj.title} After`} className="img-after" />
-                          <span className="badge-before">Before</span>
-                          <span className="badge-after">After</span>
                         </div>
                       ) : (
                         <img src={proj.image} alt={proj.title} />

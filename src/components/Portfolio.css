@@ -138,6 +138,8 @@
   align-items: flex-end;
   padding: 2rem;
   opacity: 0.9;
+  z-index: 10;
+  pointer-events: none; /* Let hovers pass through to the image */
   transition: var(--transition);
 }
 
@@ -205,30 +207,4 @@
   opacity: 1;
 }
 
-.badge-before, .badge-after {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: var(--surface-dark);
-  color: #fff;
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  z-index: 5;
-  transition: opacity 0.3s ease;
-}
 
-.badge-after {
-  opacity: 0;
-  background: var(--primary);
-  color: var(--bg-dark);
-}
-
-.portfolio-card:hover .badge-before {
-  opacity: 0;
-}
-
-.portfolio-card:hover .badge-after {
-  opacity: 1;
-}
