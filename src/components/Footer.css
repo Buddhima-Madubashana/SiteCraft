@@ -1,12 +1,13 @@
 .footer-section {
   background-color: #0b1120; /* Very deep slate */
-  padding-top: 5rem;
+  padding-top: 4rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .footer-grid {
+  display: grid;
   gap: 3rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .footer-logo {
@@ -106,4 +107,10 @@
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   color: #64748b;
   font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .footer-section { padding-top: 3rem; }
+  .footer-grid { gap: 2rem; margin-bottom: 2rem; }
+  .footer-bottom { padding: 1.5rem 0; }
 }
